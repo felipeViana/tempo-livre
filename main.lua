@@ -29,7 +29,8 @@ function love.load(...)
 end
 
 function love.update(dt)
-    sceneManager.currentScene.update(dt)
+    sceneManager.update(dt)
+    -- sceneManager.currentScene.update(dt)
 end
 
 function love.draw()
