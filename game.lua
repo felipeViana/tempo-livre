@@ -6,15 +6,16 @@ local legendaryVictory = require("legendaryVictory")
 local game = {}
 
 local currentItem
-local prices = {}
-local currentRound = 1
-local TOTAL_ROUNDS = 5
 local randomItems
+local prices
+local currentRound
+local TOTAL_ROUNDS
+local correctGuesses
 
 local BUTTON_WIDTH = 80
 local BUTTON_HEIGHT = 30
 
-local results = {}
+local results
 
 local chosenValue = nil
 
@@ -32,6 +33,12 @@ local function refreshItem()
 end
 
 function game.load()
+    prices = {}
+    currentRound = 1
+    TOTAL_ROUNDS = 5
+    correctGuesses = 0
+    results = {}
+
     -- select item
     randomItems = RandomLogic.getRandomItems(TOTAL_ROUNDS)
 
@@ -47,6 +54,7 @@ function game.update(dt)
         if prices[chosenValue] == ItemPrices[currentItem] then
             -- won
             table.insert(results, "won")
+            correctGuesses = correctGuesses + 1
         else
             -- lost
             table.insert(results, "lost")
@@ -56,7 +64,11 @@ function game.update(dt)
 
         -- go to next round
         if currentRound >= TOTAL_ROUNDS then
-            sceneManager.pushScene(legendaryVictory)
+            if correctGuesses >= TOTAL_ROUNDS / 2 then
+                sceneManager.pushScene(legendaryVictory)
+            else
+                sceneManager.pushScene(require "youreTrash")
+            end
         else
             currentRound = currentRound + 1
             refreshItem()

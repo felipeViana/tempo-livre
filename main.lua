@@ -4,6 +4,10 @@ local sceneManager = require "sceneManager"
 
 local itemNames = require "Items"
 
+function resetGame()
+    love.load()
+end
+
 function love.load(...)
     math.randomseed(os.time())
 

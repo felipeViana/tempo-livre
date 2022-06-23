@@ -1,12 +1,12 @@
-local legendaryVictory = {}
+local youreTrash = {}
 
-function legendaryVictory.load()
+function youreTrash.load()
 end
 
-function legendaryVictory.update(dt)
+function youreTrash.update(dt)
 end
 
-function legendaryVictory.draw()
+function youreTrash.draw()
     -- background
     local screenWidth, screenHeight = love.graphics.getDimensions()
     local rectWidth = screenWidth * 0.80
@@ -27,22 +27,11 @@ function legendaryVictory.draw()
         )
     end
 
-    love.graphics.draw(
-        legendaryItem,
-        screenWidth / 2,
-        screenHeight / 2,
-        0,
-        1,
-        1,
-        legendaryItem:getWidth() / 2,
-        legendaryItem:getHeight() / 2
-    )
-
-    love.graphics.print("Você ganhou!", 100, screenHeight * 0.8, 0, 2)
+    love.graphics.print("Você perdeu!", 100, screenHeight * 0.5, 0, 2)
 end
 
-function legendaryVictory.mousepressed(x, y, button)
+function youreTrash.mousepressed(x, y, button)
     resetGame()
 end
 
-return legendaryVictory
+return youreTrash
