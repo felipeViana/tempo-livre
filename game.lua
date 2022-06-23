@@ -6,16 +6,16 @@ local legendaryVictory = require("legendaryVictory")
 local game = {}
 
 local currentItem
-local prices = {}
-local currentRound = 1
-local TOTAL_ROUNDS = 5
 local randomItems
-local correctGuesses = 0
+local prices
+local currentRound
+local TOTAL_ROUNDS
+local correctGuesses
 
 local BUTTON_WIDTH = 80
 local BUTTON_HEIGHT = 30
 
-local results = {}
+local results
 
 local chosenValue = nil
 
@@ -34,6 +34,12 @@ local function refreshItem()
 end
 
 function game.load()
+    prices = {}
+    currentRound = 1
+    TOTAL_ROUNDS = 5
+    correctGuesses = 0
+    results = {}
+
     -- select item
     randomItems = RandomLogic.getRandomItems(TOTAL_ROUNDS)
 
