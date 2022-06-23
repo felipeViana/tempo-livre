@@ -22,7 +22,6 @@ end
 
 function game.draw()
     -- debug
-
     love.graphics.print(ItemPrices[currentItem]) -- correct price
 
     -- draw title
