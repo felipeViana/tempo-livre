@@ -5,6 +5,19 @@ local game = {}
 
 local currentItem
 local prices = {}
+local currentRound = 1
+local TOTAL_ROUNDS = 5
+
+local results = {}
+
+local valuesPositions = {
+    {x = 60, y = 300},
+    {x = 160, y = 300},
+    {x = 260, y = 300},
+    {x = 60, y = 400},
+    {x = 160, y = 400},
+    {x = 260, y = 400}
+}
 
 function game.load()
     -- select item
@@ -38,19 +51,36 @@ function game.draw()
     love.graphics.draw(itemToShow, 120, 100, 0, scale, scale)
 
     -- draw values
-    love.graphics.print("R$" .. prices[1], 60, 300)
-    love.graphics.print("R$" .. prices[2], 160, 300)
-    love.graphics.print("R$" .. prices[3], 240, 300)
-    love.graphics.print("R$" .. prices[4], 60, 400)
-    love.graphics.print("R$" .. prices[5], 160, 400)
-    love.graphics.print("R$" .. prices[6], 240, 400)
-
+    for index = 1, 6 do
+        love.graphics.print("R$" .. prices[index], valuesPositions[index].x, valuesPositions[index].y)
+    end
     -- draw rounds
-    love.graphics.circle("line", 330, 260, 5)
-    love.graphics.circle("line", 330, 280, 5)
-    love.graphics.circle("line", 330, 300, 5)
-    love.graphics.circle("line", 330, 320, 5)
-    love.graphics.circle("line", 330, 340, 5)
+    local circlePositions = {
+        {x = 330, y = 260},
+        {x = 330, y = 280},
+        {x = 330, y = 300},
+        {x = 330, y = 320},
+        {x = 330, y = 340}
+    }
+
+    for index = 1, TOTAL_ROUNDS do
+        love.graphics.circle("line", circlePositions[index].x, circlePositions[index].y, 5)
+    end
+
+    -- draw previous rounds
+    for index, result in ipairs(results) do
+        if result == "won" then
+            love.graphics.setColor(0, 1, 0)
+        else
+            love.graphics.setColor(1, 0, 0)
+        end
+
+        love.graphics.circle("fill", circlePositions[index].x, circlePositions[index].y, 5)
+    end
+    love.graphics.setColor(1, 1, 1)
+
+    -- draw current round
+    love.graphics.circle("fill", circlePositions[currentRound].x, circlePositions[currentRound].y, 5)
 
     -- draw players
     love.graphics.circle("line", 30, 570, 20)

@@ -5,17 +5,17 @@
             "label": "Run TPLove (current)",
             "type": "shell",
             "command": "love npcs/..",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": []
         },
         {
             "label": "Run TPLove (local core)",
             "type": "shell",
             "command": "tplove ./src --tplove C:/Tapps/tplove-core/src/tapps/lua/",
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": []
         }
     ]

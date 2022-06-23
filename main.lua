@@ -5,6 +5,9 @@ local sceneManager = require "sceneManager"
 local itemNames = require "Items"
 
 function love.load(...)
+    math.randomseed(os.time())
+
+
     -- load assets
 
     -- load items
