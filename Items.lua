@@ -6,7 +6,6 @@ return {
     "Adult_puzzle",
     "Animals_lunchbox",
     "Antique_straight_razor",
-    "Best_dad_mug",
     "Boyfriend_doll",
     "buggy"
 }

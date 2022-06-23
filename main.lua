@@ -1,3 +1,5 @@
+require("RandomLogicTesting")
+
 local sceneManager = require "sceneManager"
 
 function love.load(...)
