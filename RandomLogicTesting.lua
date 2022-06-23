@@ -1,8 +1,9 @@
 local RandomLogic = require("RandomLogic")
 local ItemPrices = require("ItemPrices")
+local items = RandomLogic.getRandomItems(5)
 
-for _ = 1, 5 do
-    local item = RandomLogic.getRandomItem()
+for i = 1, 5 do
+    local item = items[i]
 
     print("chosen item:", item)
     print("real price:", ItemPrices[item])

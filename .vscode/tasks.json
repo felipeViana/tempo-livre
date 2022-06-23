@@ -7,16 +7,6 @@
             "command": "love npcs/..",
             "group": "build",
             "problemMatcher": []
-        },
-        {
-            "label": "Run TPLove (local core)",
-            "type": "shell",
-            "command": "tplove ./src --tplove C:/Tapps/tplove-core/src/tapps/lua/",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
         }
     ]
 }

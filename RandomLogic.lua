@@ -6,8 +6,16 @@ local RandomLogic = {
     amountOfPrices = 6
 }
 
-function RandomLogic.getRandomItem()
-    return Table.random(Items)
+function RandomLogic.getRandomItems(totalRounds)
+    Table.shuffle(Items)
+
+    local items = {}
+
+    for i = 1, totalRounds do
+        items[i] = Items[i]
+    end
+
+    return items
 end
 
 function RandomLogic.randomRange(minValue, maxValue)
