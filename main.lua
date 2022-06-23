@@ -3,6 +3,11 @@ local sceneManager = require "sceneManager"
 function love.load(...)
     -- load assets
 
+    bob = love.graphics.newImage("npcs/bob.png")
+    julia = love.graphics.newImage("npcs/julia.png")
+    mutt = love.graphics.newImage("npcs/mutt.png")
+    rich = love.graphics.newImage("npcs/rich.png")
+
     sceneManager.changeScene(require "game")
 end
 

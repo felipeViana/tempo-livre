@@ -36,9 +36,16 @@ function love.draw()
 
     -- draw players
     love.graphics.circle("line", 30, 570, 20)
+    love.graphics.draw(bob, 10, 550, 0, 0.2, 0.2)
+
     love.graphics.circle("line", 130, 570, 20)
+    love.graphics.draw(julia, 110, 550, 0, 0.2, 0.2)
+
     love.graphics.circle("line", 230, 570, 20)
+    love.graphics.draw(mutt, 210, 550, 0, 0.2, 0.2)
+
     love.graphics.circle("line", 330, 570, 20)
+    love.graphics.draw(rich, 310, 550, 0, 0.2, 0.2)
 end
 
 return game
