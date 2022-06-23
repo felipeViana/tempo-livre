@@ -1,37 +1,50 @@
+local ItemPrices = require("ItemPrices")
+local RandomLogic = require("RandomLogic")
+
 local game = {}
 
-function love.load()
-    -- load assets
+local currentItem
+local prices = {}
+
+function game.load()
     -- select item
+    currentItem = RandomLogic.getRandomItem()
+
     -- load random values
+    prices = RandomLogic.getRandomPrices(currentItem)
 end
 
-function love.update(dt)
+function game.update(dt)
     -- check click on values
     -- check if win or lose
     -- load next item
 end
 
-function love.draw()
+function game.draw()
+    -- debug
+
+    love.graphics.print(ItemPrices[currentItem]) -- correct price
+
     -- draw title
     love.graphics.print("Tempo Livre", 120, 10)
 
     -- draw item
-    local itemToShow = itens["buggy"]
+    local itemToShow = itens[currentItem]
     local w, h = itemToShow:getDimensions()
     local scaleX = 150 / w
     local scaleY = 150 / h
     local scale = math.min(scaleX, scaleY)
 
+    love.graphics.print(currentItem, 120, 80) -- debug
     love.graphics.draw(itemToShow, 120, 100, 0, scale, scale)
 
     -- draw values
-    love.graphics.print("R$24", 60, 300)
-    love.graphics.print("R$47", 160, 300)
-    love.graphics.print("R$32", 240, 300)
-    love.graphics.print("R$96", 60, 400)
-    love.graphics.print("R$12", 160, 400)
-    love.graphics.print("R$85", 240, 400)
+    love.graphics.print("R$" .. prices[1], 60, 300)
+    love.graphics.print("R$" .. prices[2], 160, 300)
+    love.graphics.print("R$" .. prices[3], 240, 300)
+    love.graphics.print("R$" .. prices[4], 60, 400)
+    love.graphics.print("R$" .. prices[5], 160, 400)
+    love.graphics.print("R$" .. prices[6], 240, 400)
 
     -- draw rounds
     love.graphics.circle("line", 330, 260, 5)
