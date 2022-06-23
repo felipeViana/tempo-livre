@@ -9,7 +9,7 @@ end
 function legendaryVictory.draw()
     -- background
     local screenWidth, screenHeight = love.graphics.getDimensions()
-    local rectWidth = screenWidth * 0.85
+    local rectWidth = screenWidth * 0.80
     local rectHeight = screenHeight * 0.8
 
     local color = {

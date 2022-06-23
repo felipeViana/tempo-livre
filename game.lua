@@ -8,7 +8,7 @@ local game = {}
 local currentItem
 local prices = {}
 local currentRound = 1
-local TOTAL_ROUNDS = 2
+local TOTAL_ROUNDS = 5
 local randomItems
 
 local BUTTON_WIDTH = 80
@@ -23,8 +23,8 @@ local valuesPositions = {
     {x = 130, y = 300},
     {x = 230, y = 300},
     {x = 30, y = 400},
-    {x = 130, y = 400},
-    {x = 230, y = 400}
+    -- {x = 130, y = 400},
+    -- {x = 230, y = 400}
 }
 
 local function refreshItem()
@@ -56,11 +56,10 @@ function game.update(dt)
         chosenValue = nil
 
         -- go to next round
-        currentRound = currentRound + 1
-
-        if currentRound > TOTAL_ROUNDS then
+        if currentRound >= TOTAL_ROUNDS then
             sceneManager.pushScene(legendaryVictory)
         else
+            currentRound = currentRound + 1
             refreshItem()
         end
     end
@@ -70,7 +69,7 @@ function game.draw()
     love.graphics.draw(background)
 
     -- debug
-    love.graphics.print(ItemPrices[currentItem]) -- correct price
+    -- love.graphics.print(ItemPrices[currentItem]) -- correct price
 
     -- draw title
     love.graphics.print("Tempo Livre", 120, 10)
@@ -85,7 +84,7 @@ function game.draw()
     love.graphics.draw(itemToShow, 120, 100, 0, scale, scale)
 
     -- draw values
-    for index = 1, 6 do
+    for index = 1, 4 do
         love.graphics.print("R$" .. prices[index], valuesPositions[index].x + 10, valuesPositions[index].y + 10)
 
         love.graphics.rectangle("line", valuesPositions[index].x, valuesPositions[index].y, BUTTON_WIDTH, BUTTON_HEIGHT)
@@ -138,7 +137,7 @@ function game.mousepressed(x, y, button)
     -- print(y)
 
     -- check click on value
-    for index = 1, 6 do
+    for index = 1, 4 do
         if
             x >= valuesPositions[index].x and x <= valuesPositions[index].x + BUTTON_WIDTH and
                 y >= valuesPositions[index].y and

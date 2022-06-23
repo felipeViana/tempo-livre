@@ -3,7 +3,7 @@ local ItemPrices = require("ItemPrices")
 local Table = require("Table")
 
 local RandomLogic = {
-    amountOfPrices = 6
+    amountOfPrices = 4
 }
 
 function RandomLogic.getRandomItems(totalRounds)
