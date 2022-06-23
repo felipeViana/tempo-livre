@@ -1,12 +1,14 @@
 local ItemPrices = require("ItemPrices")
 local RandomLogic = require("RandomLogic")
+local sceneManager = require("sceneManager")
+local legendaryVictory = require("legendaryVictory")
 
 local game = {}
 
 local currentItem
 local prices = {}
 local currentRound = 1
-local TOTAL_ROUNDS = 5
+local TOTAL_ROUNDS = 2
 local randomItems
 
 local BUTTON_WIDTH = 80
@@ -40,6 +42,9 @@ end
 function game.update(dt)
     -- check if win or lose
     if chosenValue then
+        print("prices[chosenValue]", prices[chosenValue])
+        print("ItemPrices[currentItem]", ItemPrices[currentItem])
+
         if prices[chosenValue] == ItemPrices[currentItem] then
             -- won
             table.insert(results, "won")
@@ -50,17 +55,14 @@ function game.update(dt)
 
         chosenValue = nil
 
-
-        -- load next item
-        -- select item
-        currentItem = RandomLogic.getRandomItem()
-
-        -- load random values
-        prices = RandomLogic.getRandomPrices(currentItem)
-
         -- go to next round
         currentRound = currentRound + 1
 
+        if currentRound > TOTAL_ROUNDS then
+            sceneManager.pushScene(legendaryVictory)
+        else
+            refreshItem()
+        end
     end
 end
 
@@ -80,7 +82,6 @@ function game.draw()
     local scaleY = 150 / h
     local scale = math.min(scaleX, scaleY)
 
-    love.graphics.print(currentItem, 120, 80) -- debug
     love.graphics.draw(itemToShow, 120, 100, 0, scale, scale)
 
     -- draw values
@@ -133,17 +134,19 @@ function game.draw()
 end
 
 function game.mousepressed(x, y, button)
+    -- print(x)
+    -- print(y)
+
     -- check click on value
     for index = 1, 6 do
         if
-            x >= valuesPositions[index].x and x <= valuesPositions[index].x + BUTTON_WIDTH and y >= valuesPositions[index].y and
+            x >= valuesPositions[index].x and x <= valuesPositions[index].x + BUTTON_WIDTH and
+                y >= valuesPositions[index].y and
                 y <= valuesPositions[index].y + BUTTON_HEIGHT
-        then
-            chosenValue = 1
+         then
+            chosenValue = index
         end
     end
-
-
 end
 
 return game
