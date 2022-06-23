@@ -8,15 +8,20 @@ local prices = {}
 local currentRound = 1
 local TOTAL_ROUNDS = 5
 
+local BUTTON_WIDTH = 80
+local BUTTON_HEIGHT = 30
+
 local results = {}
 
+local chosenValue = nil
+
 local valuesPositions = {
-    {x = 60, y = 300},
-    {x = 160, y = 300},
-    {x = 260, y = 300},
-    {x = 60, y = 400},
-    {x = 160, y = 400},
-    {x = 260, y = 400}
+    {x = 30, y = 300},
+    {x = 130, y = 300},
+    {x = 230, y = 300},
+    {x = 30, y = 400},
+    {x = 130, y = 400},
+    {x = 230, y = 400}
 }
 
 function game.load()
@@ -28,9 +33,30 @@ function game.load()
 end
 
 function game.update(dt)
-    -- check click on values
     -- check if win or lose
-    -- load next item
+    if chosenValue then
+        if prices[chosenValue] == ItemPrices[currentItem] then
+            -- won
+            table.insert(results, "won")
+        else
+            -- lost
+            table.insert(results, "lost")
+        end
+
+        chosenValue = nil
+
+
+        -- load next item
+        -- select item
+        currentItem = RandomLogic.getRandomItem()
+
+        -- load random values
+        prices = RandomLogic.getRandomPrices(currentItem)
+
+        -- go to next round
+        currentRound = currentRound + 1
+
+    end
 end
 
 function game.draw()
@@ -52,8 +78,11 @@ function game.draw()
 
     -- draw values
     for index = 1, 6 do
-        love.graphics.print("R$" .. prices[index], valuesPositions[index].x, valuesPositions[index].y)
+        love.graphics.print("R$" .. prices[index], valuesPositions[index].x + 10, valuesPositions[index].y + 10)
+
+        love.graphics.rectangle("line", valuesPositions[index].x, valuesPositions[index].y, BUTTON_WIDTH, BUTTON_HEIGHT)
     end
+
     -- draw rounds
     local circlePositions = {
         {x = 330, y = 260},
@@ -94,6 +123,20 @@ function game.draw()
 
     love.graphics.circle("line", 330, 570, 20)
     love.graphics.draw(rich, 310, 550, 0, 0.2, 0.2)
+end
+
+function game.mousepressed(x, y, button)
+    -- check click on value
+    for index = 1, 6 do
+        if
+            x >= valuesPositions[index].x and x <= valuesPositions[index].x + BUTTON_WIDTH and y >= valuesPositions[index].y and
+                y <= valuesPositions[index].y + BUTTON_HEIGHT
+        then
+            chosenValue = 1
+        end
+    end
+
+
 end
 
 return game
