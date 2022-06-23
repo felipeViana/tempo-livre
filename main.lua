@@ -16,6 +16,8 @@ function love.load(...)
         itens[name] = love.graphics.newImage("items/" .. name .. ".png")
     end
 
+    legendaryItem = love.graphics.newImage("legendaryItem.png")
+
     -- load players
     bob = love.graphics.newImage("npcs/bob.png")
     julia = love.graphics.newImage("npcs/julia.png")
