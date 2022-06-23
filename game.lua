@@ -1,18 +1,18 @@
 local game = {}
 
-function love.load()
+function game.load()
     -- load assets
     -- select item
     -- load random values
 end
 
-function love.update(dt)
+function game.update(dt)
     -- check click on values
     -- check if win or lose
     -- load next item
 end
 
-function love.draw()
+function game.draw()
     -- draw title
     love.graphics.print("Tempo Livre", 120, 10)
 
