@@ -7,6 +7,7 @@ local currentItem
 local prices = {}
 local currentRound = 1
 local TOTAL_ROUNDS = 5
+local randomItems
 
 local BUTTON_WIDTH = 80
 local BUTTON_HEIGHT = 30
@@ -24,12 +25,16 @@ local valuesPositions = {
     {x = 230, y = 400}
 }
 
+local function refreshItem()
+    currentItem = randomItems[currentRound]
+    prices = RandomLogic.getRandomPrices(currentItem)
+end
+
 function game.load()
     -- select item
-    currentItem = RandomLogic.getRandomItem()
+    randomItems = RandomLogic.getRandomItems(TOTAL_ROUNDS)
 
-    -- load random values
-    prices = RandomLogic.getRandomPrices(currentItem)
+    refreshItem()
 end
 
 function game.update(dt)
@@ -60,6 +65,8 @@ function game.update(dt)
 end
 
 function game.draw()
+    love.graphics.draw(background)
+
     -- debug
     love.graphics.print(ItemPrices[currentItem]) -- correct price
 
