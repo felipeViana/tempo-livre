@@ -39,6 +39,7 @@ function youreTrash.draw()
     )
 
     love.graphics.print("Você perdeu!", 100, screenHeight * 0.8, 0, 2)
+    love.graphics.print("seu lixo", 160, screenHeight * 0.85, 0, 0.8)
 end
 
 function youreTrash.keypressed(key)

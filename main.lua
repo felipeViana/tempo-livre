@@ -30,7 +30,7 @@ function love.load(...)
 
     background = love.graphics.newImage("background.png")
 
-    sceneManager.changeScene(require "game")
+    sceneManager.changeScene(require "youreTrash")
 end
 
 function love.update(dt)
