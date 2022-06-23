@@ -80,7 +80,7 @@ function game.draw()
     love.graphics.draw(background)
 
     -- debug
-    -- love.graphics.print(ItemPrices[currentItem]) -- correct price
+    love.graphics.print(ItemPrices[currentItem]) -- correct price
 
     -- draw title
     love.graphics.print("Tempo Livre", 120, 10)

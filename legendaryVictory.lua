@@ -41,8 +41,10 @@ function legendaryVictory.draw()
     love.graphics.print("Você ganhou!", 100, screenHeight * 0.8, 0, 2)
 end
 
-function legendaryVictory.mousepressed(x, y, button)
-    resetGame()
+function legendaryVictory.keypressed(key)
+    if key == "return" or key == "space" then
+        resetGame()
+    end
 end
 
 return legendaryVictory

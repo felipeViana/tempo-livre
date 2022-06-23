@@ -30,8 +30,10 @@ function youreTrash.draw()
     love.graphics.print("Você perdeu!", 100, screenHeight * 0.5, 0, 2)
 end
 
-function youreTrash.mousepressed(x, y, button)
-    resetGame()
+function youreTrash.keypressed(key)
+    if key == "return" or key == "space" then
+        resetGame()
+    end
 end
 
 return youreTrash
