@@ -17,7 +17,13 @@ function love.draw()
     love.graphics.print("Tempo Livre", 120, 10)
 
     -- draw item
-    love.graphics.rectangle("line", 120, 100, 100, 100)
+    local itemToShow = itens["buggy"]
+    local w, h = itemToShow:getDimensions()
+    local scaleX = 150 / w
+    local scaleY = 150 / h
+    local scale = math.min(scaleX, scaleY)
+
+    love.graphics.draw(itemToShow, 120, 100, 0, scale, scale)
 
     -- draw values
     love.graphics.print("R$24", 60, 300)

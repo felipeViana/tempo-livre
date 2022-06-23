@@ -1,8 +1,17 @@
 local sceneManager = require "sceneManager"
 
+local itemNames = require "Items"
+
 function love.load(...)
     -- load assets
 
+    -- load items
+    itens = {}
+    for index, name in ipairs(itemNames) do
+        itens[name] = love.graphics.newImage("items/" .. name .. ".png")
+    end
+
+    -- load players
     bob = love.graphics.newImage("npcs/bob.png")
     julia = love.graphics.newImage("npcs/julia.png")
     mutt = love.graphics.newImage("npcs/mutt.png")
