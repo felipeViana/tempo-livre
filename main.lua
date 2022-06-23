@@ -1,3 +1,5 @@
+require("RandomLogicTesting")
+
 local sceneManager = require "sceneManager"
 
 local itemNames = require "Items"
