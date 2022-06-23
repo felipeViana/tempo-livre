@@ -7,7 +7,6 @@ local itemNames = require "Items"
 function love.load(...)
     math.randomseed(os.time())
 
-
     -- load assets
 
     -- load items
@@ -23,6 +22,8 @@ function love.load(...)
     julia = love.graphics.newImage("npcs/julia.png")
     mutt = love.graphics.newImage("npcs/mutt.png")
     rich = love.graphics.newImage("npcs/rich.png")
+
+    background = love.graphics.newImage("background.png")
 
     sceneManager.changeScene(require "game")
 end

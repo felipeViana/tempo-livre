@@ -39,6 +39,8 @@ function game.update(dt)
 end
 
 function game.draw()
+    love.graphics.draw(background)
+
     -- debug
     love.graphics.print(ItemPrices[currentItem]) -- correct price
 
