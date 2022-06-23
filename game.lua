@@ -10,6 +10,7 @@ local prices = {}
 local currentRound = 1
 local TOTAL_ROUNDS = 5
 local randomItems
+local correctGuesses = 0
 
 local BUTTON_WIDTH = 80
 local BUTTON_HEIGHT = 30
@@ -22,7 +23,7 @@ local valuesPositions = {
     {x = 30, y = 300},
     {x = 130, y = 300},
     {x = 230, y = 300},
-    {x = 30, y = 400},
+    {x = 30, y = 400}
     -- {x = 130, y = 400},
     -- {x = 230, y = 400}
 }
@@ -48,6 +49,7 @@ function game.update(dt)
         if prices[chosenValue] == ItemPrices[currentItem] then
             -- won
             table.insert(results, "won")
+            correctGuesses = correctGuesses + 1
         else
             -- lost
             table.insert(results, "lost")
@@ -57,7 +59,11 @@ function game.update(dt)
 
         -- go to next round
         if currentRound >= TOTAL_ROUNDS then
-            sceneManager.pushScene(legendaryVictory)
+            if correctGuesses >= TOTAL_ROUNDS / 2 then
+                sceneManager.pushScene(legendaryVictory)
+            else
+                sceneManager.pushScene(require "youreTrash")
+            end
         else
             currentRound = currentRound + 1
             refreshItem()
